@@ -1,0 +1,29 @@
+.border{
+    border: 2px solid #000000!important;
+}
+
+.nav-link{
+    color: #000000;
+    font-weight: 700;
+    border-radius: 0rem!important;
+}
+
+.active {
+    background-color: #000000 !important;
+}
+
+.navigationBar{
+    margin-top: 30px;
+}
+
+.items{
+    border: 1.5px solid #000000!important;
+}
+
+.content{
+    margin-top: 5%;
+}
+
+.side-items{
+    margin: 25px;
+}
