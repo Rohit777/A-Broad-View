@@ -13,7 +13,7 @@ $rs=mysqli_query($con,"select * from users where email='$email' AND password='$p
 if (mysqli_num_rows($rs)==0)
 {
 	?> <script type="text/javascript">
-    console.log("No user exists");
+    alert("No user exists");
   </script>
   <?php
   header("location:index.php");
@@ -29,7 +29,7 @@ if ($row['type']=='student') {
 	header("location:main.php");
 } else {
 	// code...
-	header("location:hello.php");
+	header("location:service.php");
 }
 }
  ?>
