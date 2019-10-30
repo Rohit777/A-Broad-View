@@ -36,7 +36,7 @@ if ($row['type']=='student') {
 	header("location:main.php");
 } else {
 	// code...
-	header("location:hello.php");
+	header("location:service.php");
 }
 
 }

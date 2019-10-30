@@ -1,16 +1,25 @@
 <?php
-//include auth.php file on all secure pages
 session_start();
-include("auth.php");
+include 'config.php';
+$query="Select * From jobs";
+$result = mysqli_query($con, $query)or die(mysqli_error($con));
 
-?>
+// if (mysqli_num_rows($result) > 0) {
+//     // output data of each row
+//     while($row = mysqli_fetch_assoc($result)) {
+//         echo "id: " . $row["id"]. " First Name: " . $row["firstName"]. " Last Name: " . $row["lastName"]. "<br>";
+//     }
+// } else {
+//     echo "0 results";
+// }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Message</title>
     <script src="https://kit.fontawesome.com/727eec7880.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style/main.css">
@@ -62,7 +71,7 @@ include("auth.php");
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="side-items nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                            <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="side-items nav-item">
                             <a class="nav-link" href="#"><i class="far fa-envelope"></i> Messeges</a>
@@ -83,40 +92,32 @@ include("auth.php");
                 </div>
             </div>
             <div class="col-9">
-                <div class="username">
-                    <h1>Hi Pradyumna!</h1>
-                </div>
-                <div class="accomodation">
-                    <div class="pre-def">
-                        <p>Looking for accomodation?</p>
-                    </div>
-                    <div class="result">
-                        <p>We have found 45 new accomodation at amazing prices near you. cheack them out before someonce else grab the deal.</p>
-                    </div>
-                </div>
-                <div class="job">
-                    <div class="pre-def">
-                        <p>Looking for jobs?</p>
-                    </div>
-                    <div class="result">
-                        <p>We have found 72 new job opening near you. Cheack them out now!</p>
-                    </div>
-                </div>
-                <div class="Document">
-                    <div class="pre-def">
-                        <p>Want to get document verified or renewed?</p>
-                    </div>
-                    <div class="result">
-                        <p>We have found three new offices near you. cheack them out for hassle-free document verfication and renewals</p>
-                    </div>
-                </div>
-                <div class="medic">
-                    <div class="pre-def">
-                        <p>Got a medical emergancy?</p>
-                    </div>
-                    <div class="result">
-                        <p>We have found 9 new hospital with 83 specialised doctors new you.</p>
-                    </div>
+                <p class="medium-text">All jobs</p>
+                <div class="toolbar"><a class="tool" href="#"><i class="fas fa-sort-amount-down fa-3x"></i></a>
+                                    <a class="tool" href="#"><i class="fas fa-filter fa-3x"></i></a>
+                                    <a class="tool" href="#"><i class="fas fa-star fa-3x"></i></a>
+                                </div>
+
+                <div class="accomodation-listing">
+                  <?php
+                  if (mysqli_num_rows($result) > 0) {
+                      // output data of each row
+                      while($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="list">';
+                              echo '<div class="row">';
+                              echo '<div class="col-11"><p style="font-weight:bold;">Name of Service Provider: '.$row["firstName"].' '.$row["lastName"].'<span style="font-weight:bold;float:right;margin-right:25%;">Stipend: '.$row["stipend"].'$</span></p></div><hr>';
+                              echo '<div class="col-1"><a class="tool" href="#"><i class="fas fa-star"></i></a></div>';
+                              echo '</div>';
+                              echo '<div class="description">';
+                              echo '<h4>Job Title: '.$row["jobTitle"].'</h4>';
+                              echo '<p>Job Description: '.$row["jobDesc"].'</p>';
+                              echo '</div></div>';
+                          // echo "id: " . $row["id"]. " First Name: " . $row["firstName"]. " Last Name: " . $row["lastName"]. "<br>";
+                      }
+                  } else {
+                      echo "0 results";
+                  }
+                   ?>
                 </div>
             </div>
         </div>
